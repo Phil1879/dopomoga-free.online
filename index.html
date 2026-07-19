@@ -43,6 +43,36 @@
 
   gtag('config', 'AW-17388511580');
 </script>
+<!-- Event snippet for Исходящий клик conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+// Функция для звонков (Google НЕ видит номер)
+function gtag_report_conversion_phone() {
+  var callback = function () {
+    // Реальный номер подставляется ПОСЛЕ отправки конверсии
+    window.location = 'tel:+380937668373';
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-17388511580/TLybCJmJ7dIcENzCvuNA', // Ваш лейбл для звонков
+      'event_callback': callback
+  });
+  return false;
+}
+
+// Функция для перехода на сайт (Google НЕ видит ссылку)
+function gtag_report_conversion_site() {
+  var callback = function () {
+    // Реальная ссылка подставляется ПОСЛЕ отправки конверсии
+    window.location = 'https://djerelo.help/';
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-17388511580/TLybCJmJ7dIcENzCvuNA', // Ваш лейбл для сайта (может быть другой)
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
+
 </head>
 <body>
   <div class="wrap">
@@ -63,9 +93,14 @@
     </div>
 
     <div class="cta">
-      <a class="btn call" href="tel:+380937668373">📞 Зателефонувати</a>
-      <a class="btn site" href="https://djerelo.help/">Перейти на сайт</a>
-    </div>
+  <a class="btn call" href="#" onclick="return gtag_report_conversion_phone();">
+    📞 Зателефонувати
+  </a>
+  
+  <a class="btn site" href="#" onclick="return gtag_report_conversion_site();">
+    Перейти на сайт
+  </a>
+</div>
   </div>
 
 <script>
